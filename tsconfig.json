@@ -17,8 +17,9 @@
     ]
   },
   "include": [
-    "src/",
-    "src/app/*.ts",
-    "src/app/**/*.ts"
+    "./src",
+    "./src/app/*.ts",
+    "./src/app/**/*.ts",
+    "node_modules/angular-location"
   ]
 }
