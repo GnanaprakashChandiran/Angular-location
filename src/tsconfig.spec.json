@@ -10,8 +10,7 @@
     ]
   },
   "files": [
-    "test.ts",
-    "app/location.module.ts"
+    "test.ts"
   ],
   "include": [
     "**/*.spec.ts",

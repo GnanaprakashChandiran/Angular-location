@@ -10,7 +10,8 @@
     "test.ts",
     "**/*.spec.ts"
   ],
-  "files" : [
-    "app/location.module.ts"
+  "include" : [
+    "**/*.ts",
+    "**/**/*.ts"
   ]
 }
