@@ -1,6 +1,6 @@
 {
   "name": "angular-location",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -58,7 +58,8 @@
   "keywords": [
     "country, region and city",
     "angular location",
-    "angular places list"
+    "angular places list",
+    "filter location or places"
   ],
   "bugs": {
     "url": "https://github.com/GnanaprakashChandiran/Angular-location/issues"
