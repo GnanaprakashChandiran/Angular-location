@@ -11,7 +11,7 @@
     "**/*.spec.ts"
   ],
   "include" : [
-    "**/*.ts",
-    "**/**/*.ts"
+    "./**/*.ts",
+    "../node_modules/angular-location/**/*.ts"
   ]
 }
