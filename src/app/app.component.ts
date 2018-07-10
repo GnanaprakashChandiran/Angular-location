@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { PlacesService } from './services/places.service';
 import { environment } from '../environments/environment';
 @Component({
-  selector: 'app-root',
+  selector: 'angular-location',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
