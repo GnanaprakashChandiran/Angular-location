@@ -49,5 +49,18 @@
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "typescript": "~2.5.3"
+  },
+  "author": "Gnanaprakash",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GnanaprakashChandiran/Angular-location.git"
+  },
+  "keywords": [
+    "country, region and city",
+    "angular location",
+    "angular places list"
+  ],
+  "bugs": {
+    "url": "https://github.com/GnanaprakashChandiran/Angular-location/issues"
   }
 }

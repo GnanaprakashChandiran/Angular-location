@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatOptionModule } from '@angular/material';
-import { AppComponent } from './app.component';
+import { LocationComponent } from './location.component';
 import { HttpClient, HttpClientModule  } from '@angular/common/http';
 import { Http, HttpModule, JsonpModule  } from '@angular/http';
 
@@ -12,7 +12,7 @@ import { PlacesService } from './services/places.service';
 @NgModule({
   imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, HttpModule,JsonpModule, FormsModule, ReactiveFormsModule, MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatOptionModule],
   providers: [HttpClient, PlacesService],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  declarations: [LocationComponent],
+  bootstrap: [LocationComponent]
 })
-export class AppModule { }
+export class LocationModule { }

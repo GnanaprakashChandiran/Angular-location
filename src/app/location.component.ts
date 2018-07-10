@@ -5,10 +5,10 @@ import { PlacesService } from './services/places.service';
 import { environment } from '../environments/environment';
 @Component({
   selector: 'angular-location',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './location.component.html',
+  styleUrls: ['./location.component.css']
 })
-export class AppComponent {
+export class LocationComponent {
   @Input() locationData: ILocationData;
   @Input() config: ILocationData = {
     state: true,
