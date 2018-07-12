@@ -5,19 +5,35 @@ import { PlacesService } from './services/places.service';
 import { environment } from '../environments/environment';
 @Component({
   selector: 'angular-location',
-  templateUrl: './location.component.html',
-  styleUrls: ['./location.component.css']
+  template : `
+  <div *ngFor="let curdata of formData">
+	<mat-form-field>
+<input matInput [(ngModel)]="locationData[curdata.key]" placeholder="{{curdata.placeholder}}" [matAutocomplete]="auto" [formControl]="curdata[curdata.key]">
+		<mat-autocomplete #auto="matAutocomplete" (optionSelected)="getData(curdata)">
+			<mat-option *ngFor="let options of curdata['filterData'+curdata['key']] | async" [value]="options[curdata.prop]" >
+				<span>{{options[curdata.prop]}}</span>
+			</mat-option>
+		</mat-autocomplete>
+	</mat-form-field>
+</div>
+  `
+  // templateUrl: './location.component.html',
+  // styleUrls: ['./location.component.css']
 })
 export class LocationComponent {
+  @Input() battutaToken :  string;
   @Input() locationData: ILocationData;
   @Input() config: ILocationData = {
     state: true,
     city: true
   };
   formData: Array<Object>;
-  constructor(public placesService: PlacesService) {
-
-    let path = this.placesService.apiList[0]['path'].replace('{{token}}', environment.battutaToken);
+  constructor(public placesService: PlacesService) { }
+  ngOnInit() {
+    if(!this.battutaToken) {
+      this.battutaToken = environment.battutaToken;
+    }
+    var path = this.placesService.getApiList()[0]['path'].replace('{{token}}', this.battutaToken);
     if (!this.locationData) {
       this.locationData = {
         country: '',
@@ -55,10 +71,16 @@ export class LocationComponent {
       }
     }
 
-    //battuta.medunes.net api
-    this.placesService.getDataFromCloud(path).subscribe(data => {
-      this.formData[0]['data'] = (this.formData[0]['data'] as Array<Object>).concat(data);
-    });
+    if (localStorage.getItem('locationcountry')) {
+      var countryList = localStorage.getItem('locationcountry') as string;
+      this.formData[0]['data'] = (this.formData[0]['data'] as Array<Object>).concat(JSON.parse(countryList));
+    } else {
+      //battuta.medunes.net api
+      this.placesService.getDataFromCloud(path).subscribe(data => {
+        this.formData[0]['data'] = (this.formData[0]['data'] as Array<Object>).concat(data);
+        localStorage.setItem('locationcountry', JSON.stringify(data));
+      });
+    }
     for (let formval of this.formData) {
       formval[formval['key']] = new FormControl();
       formval['filterData' + formval['key']] = formval[formval['key']].valueChanges
@@ -68,7 +90,6 @@ export class LocationComponent {
         );
     }
   }
-
   private _filterStates(value, formData?): any[] {
     const filterValue = value.toLowerCase();
     return formData['data'].filter(state => state[formData['prop']].toLowerCase().indexOf(filterValue) === 0);
@@ -79,32 +100,37 @@ export class LocationComponent {
   getData(currObj) {
     if (currObj.next) {
       var data = this.placesService.apiList.find(tempdata => tempdata['key'] === currObj.next);
-      var code = ((this.formData[0]['data'] as Array<object>).find(tempData1 => tempData1['name'] === this.formData[0]['country'].value))['code'];
+      var coutrydata = (this.formData[0]['data'] as Array<object>).find(tempData1 => tempData1['name'] === this.formData[0]['country'].value);
+      var code = coutrydata ? coutrydata['code'] : '';
       if (data) {
-        var apipath = (data['path'] as String).replace('{{country_code}}', code).replace('{{token}}', environment.battutaToken);
+        var apipath = (data['path'] as String).replace('{{country_code}}', code).replace('{{token}}', this.battutaToken);
         if (currObj['next'] === 'city') {
           apipath = apipath.replace('{{city}}', this.formData[1]['state'].value);
         }
         let formData = this.formData.find(tempdata => tempdata['key'] === currObj.next);
         if (formData) {
           this.placesService.getDataFromCloud(apipath).subscribe(data => {
-            formData['data'] = data;
+            if (formData) {
+              formData['data'] = data;
+            }
             this.resetField(currObj.next);
           });
         }
       }
     }
-    console.log('location data', this.locationData);
   }
   resetField(nextKey) {
     let formData = this.formData.find(tempdata => tempdata['key'] === nextKey);
-    (formData[nextKey] as FormControl).reset();
-    if (formData.hasOwnProperty('next')) {
-      this.resetField(formData['next']);
+    if (formData) {
+      (formData[nextKey] as FormControl).reset();
+      if (formData.hasOwnProperty('next')) {
+        this.resetField(formData['next']);
+      }
     }
+
   }
 }
-interface ILocationData {
+export interface ILocationData {
   country?: any,
   state: any,
   city: any

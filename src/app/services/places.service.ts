@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {  Jsonp } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class PlacesService {  
-  apiList: Array<Object> = [
+  apiList: Array<any> = [
     {
       key: 'country',
       path: 'https://battuta.medunes.net/api/country/all/?key={{token}}'
@@ -21,18 +21,20 @@ export class PlacesService {
       path: 'https://battuta.medunes.net/api/city/{{country_code}}/search/?region={{city}}&key={{token}}'
     }
   ];
-  constructor(public httpclient: HttpClient,
-    private jsonp: Jsonp) {
+  constructor(private jsonp: Jsonp) {
 
   }
 
 
-  getDataFromCloud(apipath) {
+  getDataFromCloud(apipath : string) : Observable<any> {
     let apiURL = `${apipath}&callback=JSONP_CALLBACK`;
     return this.jsonp.request(apiURL)
       .map(res => {
         return res.json()
       });
+  }
+  getApiList() : Array<any> {
+    return this.apiList;
   }
 }
 
