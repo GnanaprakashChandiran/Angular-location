@@ -1,7 +1,7 @@
 {
 	"name": "angular-location",
-	"version": "1.0.7",
-	"description": "Wot!",
+	"version": "1.0.8",
+	"description": "Display country, region and city. Based on country, filter region and city",
 	"main": "bundles/location.umd.min.js",
 	"module": "src/app/index.js",
 	"typings": "src/app/index.d.ts",
@@ -11,7 +11,8 @@
 		"angular country list",
 		"country, region and city",
 		"angular places list",
-		"filter location or places"
+		"filter location or places",
+		"angular location autocomplete"
 	],
 	"author": {
 		"name": "Gnanaprakash",

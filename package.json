@@ -63,10 +63,13 @@
     "url": "git+https://github.com/GnanaprakashChandiran/Angular-location.git"
   },
   "keywords": [
+    "angular-location",
+		"angular location filter",
+		"angular country list",
     "country, region and city",
-    "angular location",
     "angular places list",
-    "filter location or places"
+    "filter location or places",
+    "angular location autocomplete"
   ],
   "bugs": {
     "url": "https://github.com/GnanaprakashChandiran/Angular-location/issues"
