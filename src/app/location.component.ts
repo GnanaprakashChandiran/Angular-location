@@ -27,13 +27,13 @@ export class LocationComponent {
     state: true,
     city: true
   };
+  defaultApi = '00000000000000000000000000000000';
   formData: Array<Object>;
   constructor(public placesService: PlacesService) { }
   ngOnInit() {
     if(!this.battutaToken) {
       this.battutaToken = environment.battutaToken;
     }
-    var path = this.placesService.getApiList()[0]['path'].replace('{{token}}', this.battutaToken);
     if (!this.locationData) {
       this.locationData = {
         country: '',
@@ -75,11 +75,7 @@ export class LocationComponent {
       var countryList = localStorage.getItem('locationcountry') as string;
       this.formData[0]['data'] = (this.formData[0]['data'] as Array<Object>).concat(JSON.parse(countryList));
     } else {
-      //battuta.medunes.net api
-      this.placesService.getDataFromCloud(path).subscribe(data => {
-        this.formData[0]['data'] = (this.formData[0]['data'] as Array<Object>).concat(data);
-        localStorage.setItem('locationcountry', JSON.stringify(data));
-      });
+      this.getData(this.formData[0], 'country');
     }
     for (let formval of this.formData) {
       formval[formval['key']] = new FormControl();
@@ -97,7 +93,18 @@ export class LocationComponent {
 
 
   // battuta.medunes.net api
-  getData(currObj) {
+  getData(currObj, type?) {
+    if(type === 'country') {
+      var path = this.placesService.getApiList()[0]['path'].replace('{{token}}', this.battutaToken);
+      this.placesService.getDataFromCloud(path).subscribe(data => {
+        this.formData[0]['data'] = (this.formData[0]['data'] as Array<Object>).concat(data);
+        localStorage.setItem('locationcountry', JSON.stringify(data));
+      }, err => {
+        this.battutaToken = this.defaultApi;
+        this.getData(currObj, 'country');
+      });
+      return;
+    }
     if (currObj.next) {
       var data = this.placesService.apiList.find(tempdata => tempdata['key'] === currObj.next);
       var coutrydata = (this.formData[0]['data'] as Array<object>).find(tempData1 => tempData1['name'] === this.formData[0]['country'].value);
@@ -114,6 +121,9 @@ export class LocationComponent {
               formData['data'] = data;
             }
             this.resetField(currObj.next);
+          }, err => {
+            this.battutaToken = this.defaultApi;
+            this.getData(currObj);
           });
         }
       }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 @Component({
     selector : 'location-app',
     template : '<angular-location [locationData]="locationData" [config]="locationConfig"></angular-location>'
@@ -7,7 +8,8 @@ import { Component } from '@angular/core';
 export class ExampleComponent {
     locationData : any = {};
     locationConfig = {
-        state : false
+        state : true,
+        city : true
     }
     constructor() {}
 }
