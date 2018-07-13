@@ -6,8 +6,12 @@
 	"module": "src/app/index.js",
 	"typings": "src/app/index.d.ts",
 	"keywords": [
-		"angular",
-		"angular location filter"
+		"angular-location",
+		"angular location filter",
+		"angular country list",
+		"country, region and city",
+		"angular places list",
+		"filter location or places"
 	],
 	"author": {
 		"name": "Gnanaprakash",
@@ -16,11 +20,11 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/GnanaprakashChandiran/Angular-Location-search.git"
+		"url": "https://github.com/GnanaprakashChandiran/Angular-location.git"
 	},
-	"homepage": "https://github.com/GnanaprakashChandiran/Angular-Location-search",
+	"homepage": "https://github.com/GnanaprakashChandiran/Angular-location",
 	"bugs": {
-		"url": "https://github.com/GnanaprakashChandiran/Angular-Location-search/issues"
+		"url": "https://github.com/GnanaprakashChandiran/Angular-location/issues"
 	},
 	"peerDependencies": {
 		"@angular/core": "^5.2.0",

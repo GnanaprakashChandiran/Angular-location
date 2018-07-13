@@ -1,27 +1,33 @@
 # AngularLocation
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1.
-
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` or `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Usage
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+npm install angular-location --save
 
-## Build
+## In app.module.ts, make the following additions
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+import { LocationModule } from 'angular-location';
 
-## Running unit tests
+@NgModule({
+  imports: [
+    LocationModule
+  ]
+})
+export class AppModule { }
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## component file use like below
 
-## Running end-to-end tests
+<angular-location [locationData]="locationData" [config]="locationConfig"></angular-location>
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+locationData = {
+  country: any,
+  state: any,
+  city: any
+}
 
-## Further help
+If you have battutta token, you can send the token as input to angular-location.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
