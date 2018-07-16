@@ -12,6 +12,6 @@
   ],
   "include" : [
     "./**/*.ts",
-    "../node_modules/angular-location/**/*.ts"
+    "../node_modules/angular5-location/**/*.ts"
   ]
 }

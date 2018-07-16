@@ -1,18 +1,20 @@
 {
-	"name": "angular-location",
-	"version": "1.0.9",
+	"name": "angular5-location",
+	"version": "1.0.12",
 	"description": "Display country, region and city. Based on country, filter region and city",
 	"main": "bundles/location.umd.min.js",
 	"module": "src/app/index.js",
 	"typings": "src/app/index.d.ts",
 	"keywords": [
-		"angular-location",
-		"angular location filter",
-		"angular country list",
+		"angular5-location",
+		"angular5 location filter",
+		"angular5 country list",
 		"country, region and city",
-		"angular places list",
+		"angular5 places list",
 		"filter location or places",
-		"angular location autocomplete"
+		"angular5 location autocomplete",
+		"angular5 location",
+		"angular6 location"
 	],
 	"author": {
 		"name": "Gnanaprakash",

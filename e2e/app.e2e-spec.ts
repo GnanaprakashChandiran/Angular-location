@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('angular-location App', () => {
+describe('angular5-location App', () => {
   let page: AppPage;
 
   beforeEach(() => {

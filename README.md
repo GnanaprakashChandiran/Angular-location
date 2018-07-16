@@ -17,11 +17,11 @@ This module supports angular 5+ versions
 
 ## Usage
 ```
-npm install angular-location --save
+npm install angular5-location --save
 ```
 ## In app.module.ts, make the following additions
 ```
-import { LocationModule } from 'angular-location';
+import { LocationModule } from 'angular5-location';
 
 @NgModule({
   imports: [
@@ -32,7 +32,7 @@ export class AppModule { }
 ```
 ## component file use like below
 ```
-<angular-location [locationData]="locationData" [config]="locationConfig"></angular-location>
+<angular5-location [locationData]="locationData" [config]="locationConfig"></angular5-location>
 ```
 ```
 locationData = {
@@ -41,7 +41,7 @@ locationData = {
   city: any
 }
 ```
-If you have battutta token, you can send the token as input to angular-location.
+If you have battutta token, you can send the token as input to angular5-location.
 
 ## Development server
 
